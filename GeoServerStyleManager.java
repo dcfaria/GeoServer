@@ -81,24 +81,24 @@ public class GeoServerStyleManager extends GeoServerRESTStyleManager {
 	 * @throws Exception if something gets wrong.
 	 */
 	public boolean publishCssStyle(String cssBody, String nameStyle, String workspace) throws Exception{
-    	try{    		
-	    	if(existsStyle(nameStyle)) throw new IllegalArgumentException(String.format("Style with name %s already exists.",nameStyle));
-	        if (cssBody == null || cssBody.isEmpty()) throw new IllegalArgumentException("The style may not be null or empty");
-	        
-	        StringBuilder sUrl = new StringBuilder(getGsUrl());
-	        sUrl.append("/rest")
-	        	.append(workspace!=null ? String.format("/workspaces/%s",nameStyle) : "")
-	        	.append("/styles")
-	        	.append("?name=").append(URLEncoder.encode(nameStyle,java.nio.charset.StandardCharsets.UTF_8.toString()))
-	        	.append("&raw=true");
-	
-	        final String result = HTTPUtils.post(sUrl.toString(), new StringRequestEntity(cssBody, MIME_TYPE, "UTF-8"),getGsUser(), getGsPass());
-	        LOGGER.debug("Publish new style " + nameStyle + " to " + sUrl);
-	        if(result==null) throw new Exception("Style not uploaded.");
-	        return result.isEmpty();
-    	}catch(Exception e){
-    		throw new Exception(e.getMessage());
-    	}
+		try{    		
+			if(existsStyle(nameStyle)) throw new IllegalArgumentException(String.format("Style with name %s already exists.",nameStyle));
+			if (cssBody == null || cssBody.isEmpty()) throw new IllegalArgumentException("The style may not be null or empty");
+
+			StringBuilder sUrl = new StringBuilder(getGsUrl());
+			sUrl.append("/rest")
+				.append(workspace!=null ? String.format("/workspaces/%s",nameStyle) : "")
+				.append("/styles")
+				.append("?name=").append(URLEncoder.encode(nameStyle,java.nio.charset.StandardCharsets.UTF_8.toString()))
+				.append("&raw=true");
+
+			final String result = HTTPUtils.post(sUrl.toString(), new StringRequestEntity(cssBody, MIME_TYPE, "UTF-8"),getGsUser(), getGsPass());
+			LOGGER.debug("Publish new style " + nameStyle + " to " + sUrl);
+			if(result==null) throw new Exception("Style not uploaded.");
+			return result.isEmpty();
+		}catch(Exception e){
+			throw new Exception(e.getMessage());
+		}
 	}
 	
 	/**
@@ -126,23 +126,23 @@ public class GeoServerStyleManager extends GeoServerRESTStyleManager {
 	 */
 	public boolean updateCssStyle(String cssBody, String nameStyle, String workspace) throws Exception {
 		try{   
-			if(nameStyle==null || !existsStyle(nameStyle)) throw new IllegalArgumentException(String.format("Style with name %s not exists or style name is wrong/empty.",nameStyle));
-	        if (cssBody == null || cssBody.isEmpty()) throw new IllegalArgumentException("The style may not be null or empty");
+		     	if(nameStyle==null || !existsStyle(nameStyle)) throw new IllegalArgumentException(String.format("Style with name %s not exists or style name is wrong/empty.",nameStyle));
+	  	      	if (cssBody == null || cssBody.isEmpty()) throw new IllegalArgumentException("The style may not be null or empty");
 			
-	        StringBuilder sUrl = new StringBuilder(getGsUrl());
-	        sUrl.append("/rest")
-	        	.append(workspace!=null ? String.format("/workspaces/%s",nameStyle) : "")
-	        	.append("/styles")
-	        	.append(String.format("/%s.css",URLEncoder.encode(nameStyle,java.nio.charset.StandardCharsets.UTF_8.toString())))
-	        	.append("?raw=true");
-			
-			final String result = HTTPUtils.put(sUrl.toString(), new StringRequestEntity(cssBody, MIME_TYPE, "UTF-8"), gsuser, gspass);
-	        LOGGER.debug("Updating style " + nameStyle + " on " + sUrl);
-	        if(result==null) throw new Exception("Style not updated.");
-	        return result.isEmpty();
-    	}catch(Exception e){
-    		throw new Exception(e.getMessage());
-    	}
+			StringBuilder sUrl = new StringBuilder(getGsUrl());
+			sUrl.append("/rest")
+				.append(workspace!=null ? String.format("/workspaces/%s",nameStyle) : "")
+				.append("/styles")
+				.append(String.format("/%s.css",URLEncoder.encode(nameStyle,java.nio.charset.StandardCharsets.UTF_8.toString())))
+				.append("?raw=true");
+
+				final String result = HTTPUtils.put(sUrl.toString(), new StringRequestEntity(cssBody, MIME_TYPE, "UTF-8"), gsuser, gspass);
+			LOGGER.debug("Updating style " + nameStyle + " on " + sUrl);
+			if(result==null) throw new Exception("Style not updated.");
+			return result.isEmpty();
+		}catch(Exception e){
+			throw new Exception(e.getMessage());
+		}
 	}
 	
 	/**
@@ -162,20 +162,20 @@ public class GeoServerStyleManager extends GeoServerRESTStyleManager {
 		try{   
 			if(nameStyle==null || !existsStyle(nameStyle)) throw new IllegalArgumentException(String.format("Style with name %s not exists or style name is wrong/empty.",nameStyle));
 			
-	        StringBuilder sUrl = new StringBuilder(getGsUrl());
-	        sUrl.append("/rest")
-	        	.append(workspace!=null ? String.format("/workspaces/%s",nameStyle) : "")
-	        	.append("/styles")
-	        	.append(String.format("/%s.css",URLEncoder.encode(nameStyle,java.nio.charset.StandardCharsets.UTF_8.toString())))
-	        	.append(String.format("?purge=%b",purge))
-	        	.append(String.format("&recurse=%b",recurse));
-			
-			final boolean result = HTTPUtils.delete(sUrl.toString(), gsuser, gspass);
-	        LOGGER.debug("Removing style " + nameStyle + " on " + sUrl);
-	        if(!result) throw new Exception("Style not deleted. Check if the style are assigned to some layer.");
-	        return result;
-    	}catch(Exception e){
-    		throw new Exception(e.getMessage());
-    	}
+			StringBuilder sUrl = new StringBuilder(getGsUrl());
+			sUrl.append("/rest")
+				.append(workspace!=null ? String.format("/workspaces/%s",nameStyle) : "")
+				.append("/styles")
+				.append(String.format("/%s.css",URLEncoder.encode(nameStyle,java.nio.charset.StandardCharsets.UTF_8.toString())))
+				.append(String.format("?purge=%b",purge))
+				.append(String.format("&recurse=%b",recurse));
+
+				final boolean result = HTTPUtils.delete(sUrl.toString(), gsuser, gspass);
+			LOGGER.debug("Removing style " + nameStyle + " on " + sUrl);
+			if(!result) throw new Exception("Style not deleted. Check if the style are assigned to some layer.");
+			return result;
+    		}catch(Exception e){
+    			throw new Exception(e.getMessage());
+    		}
 	}
 }
