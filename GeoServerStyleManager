@@ -178,3 +178,4 @@ public class GeoServerStyleManager extends GeoServerRESTStyleManager {
     		throw new Exception(e.getMessage());
     	}
 	}
+}
