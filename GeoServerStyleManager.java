@@ -22,7 +22,7 @@ import it.geosolutions.geoserver.rest.HTTPUtils;
 import it.geosolutions.geoserver.rest.manager.GeoServerRESTStyleManager;
 
 /**
- * Class to predict using the REST Manager to GeoServer of GeoSolutions with CSS extends class {@link GeoServerRESTStyleManager}
+ * Class to predict using the Geoserver REST Style Manager of GeoSolutions with CSS extends class {@link GeoServerRESTStyleManager}
  * 
  * @author Daniel Faria, LabSIG (ESTG-IPVC)
  * @verion 1.1 [05/12/2016]
