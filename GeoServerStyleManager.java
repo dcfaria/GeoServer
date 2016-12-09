@@ -45,9 +45,31 @@ public class GeoServerStyleManager extends GeoServerRESTStyleManager {
 	private String getGsPass() {return gsPass;}
 	
     /**
+     * Publish/Update a Style in GeoServer, with CSS. Check's if style exists and if TRUE update the style ELSE publish.
+     *
+     * @param cssBody the css style as a String.
+     * @param nameStyle the Style name.
+     * @param workspace the workspace name.
+     *
+     * @return <TT>true</TT> if the operation completed successfully.
+     * @throws Exception if something gets wrong.
+     */
+	public boolean setCssStyle(String cssBody, String nameStyle, String workspace) throws Exception{
+		boolean stylesExists= false, result = false;
+		
+		if(workspace!=null && !workspace.isEmpty()) stylesExists = existsStyle(workspace, nameStyle);
+		else stylesExists = existsStyle(nameStyle);
+		
+		if(stylesExists) result = updateCssStyle(cssBody, nameStyle, workspace);
+		else result = publishCssStyle(cssBody, nameStyle, workspace);
+		
+		return result;
+	}
+	
+    /**
      * Publish a Style in GeoServer, with CSS.
      *
-     * @param geoCss the css style as a String.
+     * @param cssBody the css style as a String.
      * @param nameStyle the Style name.
      *
      * @return <TT>true</TT> if the operation completed successfully.
@@ -61,7 +83,7 @@ public class GeoServerStyleManager extends GeoServerRESTStyleManager {
 	/**
 	 * Publish a Style in GeoServer, with CSS.
 	 *
-	 * @param geoCss the css style as a String.
+	 * @param cssBody the css style as a String.
 	 * @param nameStyle the Style name.
 	 * @param workspace the workspace name.
 	 *
@@ -92,7 +114,7 @@ public class GeoServerStyleManager extends GeoServerRESTStyleManager {
 	/**
 	 * Update a Style, with CSS.
 	 *
-	 * @param geoCss the css style as a String.
+	 * @param cssBody the css style as a String.
 	 * @param nameStyle the Style name.
 	 *
 	 * @return <TT>true</TT> if the operation completed successfully.
@@ -105,7 +127,7 @@ public class GeoServerStyleManager extends GeoServerRESTStyleManager {
 	/**
 	 * Update a Style, with CSS.
 	 *
-	 * @param geoCss the css style as a String.
+	 * @param cssBody the css style as a String.
 	 * @param nameStyle the Style name.
 	 * @param workspace the workspace name.
 	 *
