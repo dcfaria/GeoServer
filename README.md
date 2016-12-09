@@ -1,4 +1,5 @@
 # GeoServer
+Predict cases not expected
 
 # How to use
 ### GeoServerStyleManager
