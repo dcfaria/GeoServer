@@ -3,7 +3,7 @@ Predict cases not expected
 
 # How to use
 ### GeoServerStyleManager
-Class to predict using the [REST Manager to GeoServer of GeoSolutions] (https://github.com/geosolutions-it/geoserver-manager) with CSS.
+Class to predict using the [GeoServer REST Style Manager of GeoSolutions] (https://github.com/geosolutions-it/geoserver-manager) with CSS.
 
 I've tested on [GeoServer 2.10](https://sourceforge.net/projects/geoserver/files/GeoServer/2.10.0/), and add you need to add [Geoserver CSS plugin](https://sourceforge.net/projects/geoserver/files/GeoServer/2.10.0/extensions/geoserver-2.10.0-css-plugin.zip/download) at your geoserver.
 
