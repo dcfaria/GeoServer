@@ -14,7 +14,7 @@ import it.geosolutions.geoserver.rest.manager.GeoServerRESTStyleManager;
  * Class to predict using the Geoserver REST Style Manager of GeoSolutions with CSS extends class {@link GeoServerRESTStyleManager}
  * 
  * @author Daniel Faria, LabSIG (ESTG-IPVC)
- * @verion 1.1 [05/12/2016]
+ * @verion 1.2 [09/12/2016]
  *
  */
 public class GeoServerStyleManager extends GeoServerRESTStyleManager {
