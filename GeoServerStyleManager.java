@@ -1,20 +1,9 @@
 package service;
 
-import java.io.IOException;
-import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
-import org.apache.commons.io.IOUtils;
-import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.styling.NamedLayer;
-import org.geotools.styling.Style;
-import org.geotools.styling.StyleFactory;
-import org.geotools.styling.StyledLayerDescriptor;
-import org.geotools.styling.css.CssParser;
-import org.geotools.styling.css.CssTranslator;
-import org.geotools.styling.css.Stylesheet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +20,6 @@ import it.geosolutions.geoserver.rest.manager.GeoServerRESTStyleManager;
 public class GeoServerStyleManager extends GeoServerRESTStyleManager {
 	private static final String MIME_TYPE = "application/vnd.geoserver.geocss+css";
 	private final static Logger LOGGER = LoggerFactory.getLogger(GeoServerStyleManager.class);
-	private static StyleFactory styleFactory = CommonFactoryFinder.getStyleFactory(null);
 	
 	private String gsUrl, gsUser, gsPass;
 	
