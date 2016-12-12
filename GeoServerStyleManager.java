@@ -55,12 +55,9 @@ public class GeoServerStyleManager extends GeoServerRESTStyleManager {
      * @throws Exception if something gets wrong.
      */
 	public boolean setCssStyle(String cssBody, String nameStyle, String workspace) throws Exception{
-		boolean stylesExists= false, result = false;
-		
-		if(workspace!=null && !workspace.isEmpty()) stylesExists = existsStyle(workspace, nameStyle);
-		else stylesExists = existsStyle(nameStyle);
-		
-		if(stylesExists) result = updateCssStyle(cssBody, nameStyle, workspace);
+		boolean result = false;
+
+		if(existsStyle(workspace, nameStyle)) result = updateCssStyle(cssBody, nameStyle, workspace);
 		else result = publishCssStyle(cssBody, nameStyle, workspace);
 		
 		return result;
